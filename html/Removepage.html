@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remove Student</title>
+    <link rel="stylesheet" type="text/css" href="styles/Removepage.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="bg-container">
+        <div class="overlay">
+        <div class="content">
+            <img id="crest" src="images/kducrest.png" class="kdu-crest">
+            <div class="grey-side">
+                <div class="addstudent-form">
+                <h2><b>Student Details</b></h2>
+                <form action="#">
+                    <div class="form-group2">
+                        <div class="form-group">
+                            <input type="text" class="form-control1" id="First Name" name="First Name" placeholder="First Name" oninput="changeTextColor(this)"> 
+                            <input type="text" class="form-control2" id="Last Name" name="Last Name" placeholder="Last Name" oninput="changeTextColor(this)">
+                            </div><br>
+                            
+                        <input type="text" class="form-control3" id="Reg-No" name="Reg-No" placeholder="Registration Number" oninput="changeTextColor(this)"><br><br>
+                        <select class="form-control3" id="Gender" name="Gender" oninput="changeTextColor(this)">
+                            <option value="" disabled selected>Gender</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select><br><br>
+                        <input type="text" class="form-control3" id="Intake-No" name="Intake-No" placeholder="Intake Number" oninput="changeTextColor(this)"><br><br>
+                        
+                        <select class="form-control3" id="YearSelect" name="YearSelect" oninput="changeTextColor(this)">
+                            <option value="" disabled selected>Select Year</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                            <!-- Add more options for other years as needed -->
+                        </select><br><br>
+
+                       
+                        <select class="form-control3" id="semester" name="Semester" oninput="changeTextColor(this)">
+                            <option value="" disabled selected> Select Semester</option>
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                            <!-- Add more options for other years as needed -->
+                        </select><br><br>
+
+                        <div class="grey-side2">
+                            <div class="popup-content">
+                                <p><b>Are you sure you want to delete this?</b></p>
+                                <button class="btn btn-primary1" id="confirmYes"><b>Yes</b></button>
+                                <button class="btn btn-primary1" id="confirmNo"><b>No</b></button>
+                            </div>
+                        </div>
+                        <select class="form-control3" id="courselist" name="Courselist" oninput="changeTextColor(this)">
+                            <option value="" disabled selected>Update Course List</option>
+                            <option value="1st Semester">1st Semester</option>
+                            <option value="2nd Semester">2nd Semester</option>
+                            <!-- Add more options for other years as needed -->
+                        </select><br><br>              
+                    </div>
+                    <button type="submit" class="btn btn-primary " style="color:white"><b>Remove</b></button>
+                    <button type="submit" class="btn btn-primary " style="color:white"><b>Update</b></button>
+                </div>
+
+                </form>
+               
+                
+               
+                 <!-- right home -->
+                 <a href="dashboard.html" class="home-link">
+                    <span class="home-icon">&#8962;</span>
+                </a>
+            </div>
+        </div>
+            
+        </div>
+   <!-- Bootstrap JS -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script>
+       function changeTextColor(element) {
+           element.style.color = "black";
+       }
+   </script>
+</body>
+</html>
+

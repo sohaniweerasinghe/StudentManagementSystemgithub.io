@@ -1,0 +1,206 @@
+/* Apply background image to the .bg-container div */
+.bg-container {
+    position: relative; /* Make sure the container stays in place */
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('images/foc2.1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-attachment: fixed;
+}
+
+
+/* Overlay for controlling background image opacity */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Black overlay with 90% opacity */
+}
+/* Center the content */
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: white; /* Text color */
+}
+
+/* Style for the crest image */
+.kdu-crest {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 110px;
+    height: auto;
+}
+
+
+.addstudent-form {
+    max-width: 700px; /* Fixed width for login form */
+    font-size: 20px; /* Adjust font size */
+    font-family: 'Montserrat'; /* Specify font family */
+    text-align: center; /* Center-align text */
+    margin-bottom: 20px; /* Add space between the header and the form */
+    height:550px;
+}
+
+.addstudent-form h2 {
+    text-align: center; /* Center-align the h2 element */
+    font-size: 34px; /* Increase the font size of the h2 element */
+    color:white;
+}
+
+.grey-side {
+    background-color: rgba(167, 163, 163, 0.7);
+    width: 80%; /* Adjust width as needed */
+    max-width: 600px; /* Maximum width */
+    margin: 50px auto; /* Center the element horizontally and provide a gap from the top */
+    padding: 20px; /* Padding inside the grey side */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow */
+}
+
+.grey-side2 {
+    background-color: rgba(167, 163, 163, 0.7);
+    width: 80%; /* Adjust width as needed */
+    max-width: 600px; /* Maximum width */
+    margin: 50px auto; /* Center the element horizontally and provide a gap from the top */
+    padding: 20px; /* Padding inside the grey side */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Add space between each input group */
+    display: flex;
+    color: gray;
+}
+
+.form-control1, .form-control2 {
+    width: calc(53% - 5px); /* Adjust the width as needed */
+    height: 25px;
+    margin-right: 9px; /* Add space between inputs */
+    margin-left:7px;
+    color: gray;
+}
+
+.form-control3 {
+    width: 550px; /* Adjust the width as needed */
+    height: 25px;
+    color: gray;
+}
+
+
+
+/* Style the submit button */
+.grey-side .btn-primary {
+    background-color:#FF7629; /* Blue background color */
+    border-color: #FF7629; /* Border color */
+    font-size: 18px; /* Adjust font size */
+    padding: 10px 20px; /* Adjust padding */
+    
+    transition: background-color 0.3s ease; /* Smooth transition */
+    margin-left: 40px; /* Increase the gap between buttons */
+    margin-right: 70px;
+    margin-left: 70px;
+    margin-top:1px;
+}
+
+.grey-side .btn-primary:hover {
+    background-color:  #b69037; /* Darker shade on hover */
+    border-color: #b69037;
+}
+
+
+.grey-side2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(193, 189, 189, 0.9); /* Adjust the opacity value (0.7) as needed */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 999; /* Ensure it appears above other content */
+    height:200px;
+    width:500px;
+    margin-top:-5px;
+}
+
+.popup-content {
+    text-align: center;
+    color:black;
+}
+
+.btn {
+    margin-top: 50px;
+    margin:60px;
+}
+
+.btn-primary1 {
+    background-color: #6C5ADD !important; /* Add !important to override other rules */
+    border-color: #6C5ADD !important; /* Add !important to override other rules */
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    margin-top: 50px;
+    margin: 60px; /* This line overrides the previous margin-top and margin */
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    
+}
+
+.btn-primary1-popup-content{
+    color: white;
+}
+
+
+.grey-side2-.btn-primary1 {
+    background-color: #bbc1c8;
+    border-color: #bbc1c8;
+}
+
+/* Adjust the gap between buttons */
+.custom-btn + .custom-btn {
+    margin-left: 5000px; /* Increase the gap between buttons */
+   
+}
+
+.home-bg-container {
+    position: relative;
+}
+
+.home-link {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #FF7629;
+    text-decoration: none;
+    width: 100px; /* Increase width */
+    height: 80px; /* Increase height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px; /* Adjust the font size as needed */
+    
+}
+
+.home-link i {
+    font-size: 50pt; /* Increase font size */
+}
+
+.home-link:hover {
+    text-decoration: none; /* Remove underline on hover */
+}
+

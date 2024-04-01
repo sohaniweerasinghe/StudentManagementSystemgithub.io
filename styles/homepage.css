@@ -1,0 +1,75 @@
+/* Apply background image to the .bg-container div */
+.bg-container {
+    position: relative; /* Make sure the container stays in place */
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('im');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-attachment: fixed;
+}
+
+/* Overlay for controlling background image opacity */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Black overlay with 90% opacity */
+}
+
+/* Center the content */
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: white; /* Text color */
+}
+
+/* Style for the crest image */
+.crest {
+    width: 100%; /* Ensure the crest image fits the screen width */
+    height: auto;
+    max-width: 300px; /* Adjust maximum width as needed */
+}
+
+/* Style for the buttons */
+.buttons {
+   
+    display: flex; /* Use flexbox */
+    justify-content: space-around; /* Adjusts spacing between buttons */
+   
+}
+
+.custom-btn {
+    font-family: 'Montserrat'; /* Custom font family */
+    font-size: 18px; /* Custom font size */
+    padding: 15px 20px; /* Adjust padding to increase button size */
+    border-radius: 30px; /* Makes buttons round */
+    background-color: rgba(10, 10, 10, 0.5); /* Blue background color */
+    border-color: rgba(10, 10, 10, 0.5); /* Border color */
+    color: #fff; /* Text color */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+    margin:90px;
+}
+
+
+.custom-btn:hover {
+    background-color: #b69037; /* Darker blue on hover */
+    border-color: #b69037;
+}
+
+/* Adjust the gap between buttons */
+.custom-btn + .custom-btn {
+    margin-left: 5000px; /* Increase the gap between buttons */
+   
+}
+

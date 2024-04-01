@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Student Management System</title>
+    <link rel="stylesheet" href="styles/courses.css">   
+</head>
+<body>
+    <div class="bg-container">
+        <div class="overlay">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="images/kducrest.png" alt="Logo">
+            </div>
+            <ul class="navigation">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="myprofile.html">Settings</a></li>
+            </ul>
+            
+        </div>
+        <div class="grey-side">
+        <header>
+            <div class="search-bar">
+                <input type="text" placeholder="Explore...">
+                <button type="submit">&#128269;</button>
+            </div>
+            <div class="profile">
+                <div class="user-info" onclick="toggleDropdown()">
+                    <img src="images/Sohani1.jpg" alt="Profile Picture">
+                    <span class="username" id="username">Loading...</span> <!-- Initially display "Loading..." -->
+                    <button type="submit">&#9660;</button>
+                </div>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="myprofile.html">My Profile</a>
+                    <a href="login.html">Logout</a>
+                </div>
+            </div>
+            
+        </header>
+        <div class="container">
+            <div class="grey-side2">
+                <div class="content">
+                    <h2>Bsc(Hons) in Software Engineering Degree Programme</h2>
+                </div>
+            </div>
+
+            <p><b>Search Courses;</b></p>
+            <div class="container2" style="color: rgb(56, 57, 58); font-size: 25px; margin-left: 100px;">
+                <ul>
+                    <li>
+                        <b>1st Year</b> <i class="fas fa-chevron-down dropdown-icon" onclick="toggleDropdown(this)"></i>
+                        <ul class="dropdown-list">
+                            <li>Fundamentals of Programming</li>
+                            <li>Foundation of Computer Science</li>
+                            <li>Fundamentals of databases</li>
+                            <li>Computer Systems Architecture</li>
+                            <li>Probability and Statistics</li>
+                            <li>Mathematics for Computing</li>
+                            <!-- Add more courses as needed -->
+                        </ul>
+                    </li>
+                    <li>
+                        <b>2nd Year</b> <i class="fas fa-chevron-down dropdown-icon" onclick="toggleDropdown(this)"></i>
+                        <ul class="dropdown-list">
+                            <li>Data Structure and Algorithms</li>
+                            <li>Operating Systems</li>
+                            <li>Object Oriented Programming</li>
+                            <li>Requirements Engineering</li>
+                            <li>Electronics Systems</li>
+                            <li>Calculas and Numerical Methods</li>
+                            <!-- Add more courses as needed -->
+                        </ul>
+                    </li>
+                    <li>
+                        <b>3rd Year</b> <i class="fas fa-chevron-down dropdown-icon" onclick="toggleDropdown(this)"></i>
+                        <ul class="dropdown-list">
+                            <li>Engineering Foundation for SOftware</li>
+                            <li>SoftwareModeling</li>
+                            <li>Software Construction Technologies and Tools</li>
+                            <li>UX and UI Engineering</li>
+                            <li>Software Design and Architecture</li>
+                            <li>Research Methodology</li>
+                            <!-- Add more courses as needed -->
+                        </ul>
+                    </li>
+                    <li>
+                        <b>4th Year</b> <i class="fas fa-chevron-down dropdown-icon" onclick="toggleDropdown(this)"></i>
+                        <ul class="dropdown-list">
+                            <li>Formal Methods and Software Verification</li>
+                            <li>Software Evolution</li>
+                            <li>Software Quality Assuarance</li>
+                            <li>Emerging Trends in Computing</li>
+                            <li>Theory of Programming Languages</li>
+                            <li>Machine Learning</li>
+                            <!-- Add more courses as needed -->
+                        </ul>
+                    </li>
+                    </ul>
+                </div>
+
+        </div>
+
+        </div>
+        </div>
+        
+        </div>
+
+    
+ <!-- Bootstrap JS -->
+ <script>
+    function toggleDropdown(icon) {
+    var dropdownContent = document.getElementById("dropdownContent");
+    dropdownContent.style.display = (dropdownContent.style.display === "block") ? "none" : "block";
+}
+
+
+</script>
+<!-- Include Firebase SDK version 8.x -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script> <!-- Include Firestore -->
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyAdbCc-b4dyiQUeTTYYytB3f5_dXRAEPAs",
+        authDomain: "lms-database-9393b.firebaseapp.com",
+        projectId: "lms-database-9393b",
+        storageBucket: "lms-database-9393b.appspot.com",
+        messagingSenderId: "24843873960",
+        appId: "1:24843873960:web:d27979f5801d5c43939c9d"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore(); // Get a Firestore instance
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            const userId = user.uid;
+            db.collection("signup").doc(userId).get()
+            .then((doc) => {
+                if (doc.exists) {
+                    const userData = doc.data();
+                    document.getElementById("username").textContent = userData.fullName;
+                } else {
+                    console.log("No such document!");
+                }
+            })
+            .catch((error) => {
+                console.log("Error getting document:", error);
+            });
+        }
+    });
+</script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,157 @@
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Set the main container to fill the entire viewport */
+.container {
+    display: flex;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('foc2.1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Overlay for controlling background image opacity */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Black overlay with 90% opacity */
+}
+
+.about-us{
+    font-family:'Montserrat';
+    color: white;
+    font-size: 20pt;
+}
+
+.h2{
+    font-family:'Montserrat';
+    color: #FF7629;
+    font-size: 30pt;  
+}
+
+.black-side {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: white;
+    text-align: center;
+    font-size: 20pt;
+    width: 100vw; /* Fixed width for black side */
+    font-family:'Montserrat';
+   
+}
+
+.kdu-crest {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 110px;
+    height: auto;
+}
+
+.grey-side {
+    flex: 1;
+    background-color: rgba(167, 163, 163, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%; /* Fixed width for grey side */
+}
+
+.arrow-container {
+    position: relative;
+}
+
+span {
+  content: "\2190";
+}
+
+.arrow-link {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color:#FF7629;
+    text-decoration: none;
+    width: 50px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+
+
+.arrow-link i {
+    font-size: 40px;
+}
+
+.login-form {
+    max-width: 400px; /* Fixed width for login form */
+    font-size: 20px; /* Adjust font size */
+    font-family: 'Montserrat'; /* Specify font family */
+    text-align: center; /* Center-align text */
+}
+
+.login-form h2 {
+    text-align: center; /* Center-align the h2 element */
+    font-size: 34px; /* Increase the font size of the h2 element */
+    color:white;
+}
+
+
+/* Increase gap between text boxes */
+.grey-side .form-group {
+    margin-bottom: 50px; /* Adjust the value as needed */
+}
+
+/* Increase font size of form elements */
+.grey-side .form-control {
+    font-size: 16px; /* Adjust the font size as needed */
+    font-family: 'Montserrat';
+}
+
+/* Style the submit button */
+.grey-side .btn-primary {
+    background-color:rgba(239, 190, 150, 0.9); /* Blue background color */
+    border-color: rgba(239, 190, 150, 0.9); /* Border color */
+    font-size: 18px; /* Adjust font size */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 30px; /* Make button round */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    margin-left: 40px; /* Increase the gap between buttons */
+    margin-right: 40px;
+}
+
+.grey-side .btn-primary:hover {
+    background-color:  #b69037; /* Darker shade on hover */
+    border-color: #b69037;
+}
+
+/* Adjust the gap between buttons */
+.grey-side .btn-primary + .grey-side .btn-primary {
+    margin-left: 7000px; /* Increase the gap between buttons */
+   
+}
+
+
+
+

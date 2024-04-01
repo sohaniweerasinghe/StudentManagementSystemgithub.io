@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="styles/Signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xrXRJ+S0ePjq21xln2/8z5mr6X2B+mlpfyCt61wh6qB4YRRYcm0GZxr7F+KnWgDL7JJr2v9dz3ug2RUOQc7/8Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=Playfair+Display:ital,wght@0,400;1,500&family=Signika+Negative:wght@500&family=Source+Sans+3:wght@400;600;700&family=Truculenta:opsz,wght@12..72,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="black-side">
+            <img src="images/kducrest.png" alt="KDU Crest" class="kdu-crest">
+            <div class="h2">
+                <h2><b>About Us</b></h2>
+            <div class="about-us">
+                <p><b>Welcome to the Student Management System (SMS) for the Department of Software Engineering at General Sir John Kotelawala Defence University.</b> 
+                    <br><br>
+                    <b>Our web-based platform is designed to streamline student registrations and provide efficient management of student accounts. </b>
+                    <br><br>
+                    <b>Join us in embracing the future of student management, where efficiency and flexibility are our top priorities.</b></p>
+                  <!-- right arrow -->
+
+                      <a href="index.html" class="arrow-link">
+                        <span class="arrow-icon">&#8592;</span>
+                    </a>
+                </div>  
+            </div>
+        </div>
+
+        <div class="grey-side">
+            <div class="Signup-form">
+                <h2><b>Sign Up</b></h2>
+                <form onsubmit="signUp(); return false;">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="First Name" name="First Name" placeholder="First Name">
+                        <input type="text" class="form-control" id="Last Name" name="Last Name" placeholder="Last Name"><br><br>
+
+                    <div class="form-group2">
+                        <input type="email" class="form-control2" id="Email" name="Email" placeholder="Email"><br><br>
+                        <input type="text" class="form-control2" id="Reg-No" name="Reg-No" placeholder="Registration Number"><br><br>
+                        <input type="password" class="form-control2" id="password" name="password" placeholder="Password"><br><br>
+                        <input type="password" class="form-control2" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                    </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="color:white"><b>Sign Up</b></button>
+                    <button type="button" class="btn btn-primary" style="color:white" onclick="window.location.href='Home page.html'"><b>Cancel</b></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Firebase SDK version 8.x -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script> <!-- Include Firestore -->
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAdbCc-b4dyiQUeTTYYytB3f5_dXRAEPAs",
+            authDomain: "lms-database-9393b.firebaseapp.com",
+            projectId: "lms-database-9393b",
+            storageBucket: "lms-database-9393b.appspot.com",
+            messagingSenderId: "24843873960",
+            appId: "1:24843873960:web:d27979f5801d5c43939c9d"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        const db = firebase.firestore(); // Get a Firestore instance
+
+        function signUp() {
+            const firstName = document.getElementById('First Name').value;
+            const lastName = document.getElementById('Last Name').value;
+            const email = document.getElementById('Email').value;
+            const regNo = document.getElementById('Reg-No').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const userUid = userCredential.user.uid; // Get the user UID
+                    // Save user data in Firestore with the UID as document ID
+                    db.collection("signup").doc(userUid).set({
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        regNo: regNo
+                    })
+                    .then(() => {
+                        alert("Sign up successful!");
+                        // Redirect to the dashboard page after sign up
+                        window.location.href = "home.html";
+                    })
+                    .catch((error) => {
+                        alert("Error saving user data: " + error);
+                    });
+                })
+                .catch((error) => {
+                    var errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        }
+    </script>
+</body>
+</html>

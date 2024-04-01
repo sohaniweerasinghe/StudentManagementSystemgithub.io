@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Student Management System</title>
+    <link rel="stylesheet" href="styles/mypfoile.css">
+</head>
+<body>
+    <div class="bg-container">
+        <div class="overlay">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="images/kducrest.png" alt="Logo">
+            </div>
+            <ul class="navigation">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="myprofile.html">Settings</a></li>
+            </ul>
+        </div>
+        <div class="grey-side">
+        <header>
+            <div class="search-bar">
+                <input type="text" placeholder="Explore...">
+                <button type="submit">&#128269;</button>
+            </div>
+            <div class="profile">
+                <div class="user-info" onclick="toggleDropdown()">
+                    <img src="images/Sohani1.jpg" alt="Profile Picture">
+                    <span class="username">AS Weerasinghe</span>
+                    <button type="submit">&#9660;</button>
+                </div>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="myprofile.html">My Profile</a>
+                    <a href="login.html">Logout</a>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="profile-container">
+                <img src="images/Sohani1.jpg" alt="Profile Picture" class="profile-picture">
+                <div class="profile-info">
+                    <h2 class="username1">AS Weerasinghe</h2>
+                    <a href="editprofile.html" class="edit-profile-button"><i>Edit Profile</i></a>
+                </div>
+                <div class="details">
+                    <div class="detail-item">
+                        <p class="detail-label">Full Name:</p>
+                        <p class="detail-value fullname"><b></b></p>
+                    </div>
+                    <div class="detail-item">
+                        <p class="detail-label">Email:</p>
+                        <p class="detail-value email"><b></b></p>
+                    </div>
+                    <div class="detail-item">
+                        <p class="detail-label">Country:</p>
+                        <p class="detail-value country"><b></b></p>
+                    </div>
+                    <div class="detail-item">
+                        <p class="detail-label">City/Town:</p>
+                        <p class="detail-value city"><b></b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+ <!-- Firebase SDK -->
+ <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+ <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyAdbCc-b4dyiQUeTTYYytB3f5_dXRAEPAs",
+        authDomain: "lms-database-9393b.firebaseapp.com",
+        projectId: "lms-database-9393b",
+        storageBucket: "lms-database-9393b.appspot.com",
+        messagingSenderId: "24843873960",
+        appId: "1:24843873960:web:d27979f5801d5c43939c9d"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Initialize Firestore
+    const firestore = firebase.firestore();
+
+    // Function to toggle dropdown menu
+    function toggleDropdown() {
+        var dropdownContent = document.getElementById("dropdownContent");
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    }
+
+    // Function to fetch user data from Firestore
+function fetchUserData() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            const userUid = user.uid;
+            firestore.collection("signup").doc(userUid).get().then((doc) => {
+                if (doc.exists) {
+                    const userData = doc.data();
+                    
+                    // Update HTML elements with user data
+                    document.querySelector(".fullname").textContent = userData.fullName;
+                    document.querySelector(".detail-value.email").textContent = userData.email;
+                    document.querySelector(".detail-value.country").textContent = userData.country;
+                    document.querySelector(".detail-value.city").textContent = userData.city;
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+        } else {
+            console.log("No user signed in.");
+        }
+    });
+}
+
+
+    // Call fetchUserData function when the page loads
+    window.onload = function() {
+        fetchUserData();
+    };
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Student Management System</title>
+    <link rel="stylesheet" href="styles/editprofile.css">
+   
+</head>
+<body>
+    <div class="bg-container">
+        <div class="overlay">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="images/kducrest.png" alt="Logo">
+            </div>
+            <ul class="navigation">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="myprofile.html">Settings</a></li>
+            </ul>
+        </div>
+        <div class="grey-side">
+        <header>
+            <div class="search-bar">
+                <input type="text" placeholder="Explore...">
+                <button type="submit">&#128269;</button>
+            </div>
+            <div class="profile">
+                <div class="user-info" onclick="toggleDropdown()">
+                    <img src="images/Sohani1.jpg" alt="Profile Picture">
+                    <span class="username">AS Weerasinghe</span>
+                    <button type="submit">&#9660;</button>
+                </div>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="myprofile.html">My Profile</a>
+                    <a href="login.html">Logout</a>
+                </div>
+            </div>
+            
+        </header>
+        <div class="container">
+            <h2 style="color: white; font-size: 30px; margin-top: -10px;"><i>Edit Profile</i></h2>
+            <div class="profile-picture-container" onclick="triggerFileInput(event)">
+                <img src="images/Sohani1.jpg" alt="Profile Picture" class="profile-picture">
+            </div>
+            <input type="file" id="profilePicture" name="profilePicture" style="display: none;" onchange="previewImage()">
+            <div class="profile-info">
+                <form id="profileForm">
+                    <table class="transparent-table">
+                        <tr>
+                            <td><label for="username"><b>Full Name</b></label></td>
+                            <td><input type="text" class="form-control" id="fullName" name="fullName"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email"><b>Email</b></label></td>
+                            <td><input type="email" class="form-control" id="email" name="email"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="country"><b>Country</b></label></td>
+                            <td><input type="text" class="form-control" id="country" name="country"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="city"><b>City/Town</b></label></td>
+                            <td><input type="text" class="form-control" id="city" name="city"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="gender"><b>Gender</b></label></td>
+                            <td>
+                                <select id="gender" name="gender" class="form-control">
+                                    <option value="" disabled selected> Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary" style="color:white"><b>Save</b></button>
+                </form>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+ <!-- Bootstrap JS -->
+
+ <script>
+    function toggleDropdown() {
+        var dropdownContent = document.getElementById("dropdownContent");
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    }
+    function triggerFileInput(event) {
+        if (event.target.classList.contains('profile-picture')) {
+            document.getElementById('profilePicture').click();
+        }
+    }
+
+    function previewImage() {
+        var input = document.getElementById('profilePicture');
+        var preview = document.querySelector('.profile-picture');
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "Sohani1.jpg";
+        }
+    }
+</script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAdbCc-b4dyiQUeTTYYytB3f5_dXRAEPAs",
+            authDomain: "lms-database-9393b.firebaseapp.com",
+            projectId: "lms-database-9393b",
+            storageBucket: "lms-database-9393b.appspot.com",
+            messagingSenderId: "24843873960",
+            appId: "1:24843873960:web:d27979f5801d5c43939c9d"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(); // Get a Firestore instance
+    
+        // Function to get user profile data and populate the form fields
+        function populateProfileData() {
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const userUid = user.uid;
+                // Retrieve user profile data from Firestore
+                db.collection("signup").doc(userUid).get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            // Populate form fields with retrieved data
+                            document.getElementById("fullName").value = data.fullName || "";
+                            document.getElementById("email").value = data.email || "";
+                            document.getElementById("country").value = data.country || "";
+                            document.getElementById("city").value = data.city || "";
+                            document.getElementById("gender").value = data.gender || "";
+                        } else {
+                            console.log("No such document!");
+                        }
+                    })
+                    .catch((error) => {
+                        console.log("Error getting document:", error);
+                    });
+            } else {
+                console.log("User not signed in.");
+            }
+        }
+    
+        document.getElementById("profileForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const userUid = user.uid;
+                const fullName = document.getElementById("fullName").value;
+                const email = document.getElementById("email").value;
+                const country = document.getElementById("country").value;
+                const city = document.getElementById("city").value;
+                const gender = document.getElementById("gender").value;
+                
+                // Store user profile data in EditProfile collection
+                db.collection("signup").doc(userUid).set({
+                    fullName: fullName,
+                    email: email,
+                    country: country,
+                    city: city,
+                    gender: gender
+                })
+                .then(() => {
+                    console.log("Profile data stored successfully!");
+                    alert("Profile data updated successfully!");
+                    window.location.href = "myprofile.html"; // Redirect to myprofile.html
+                })
+                .catch((error) => {
+                    console.error("Error storing profile data: ", error);
+                    alert("Failed to update profile data. Please try again later.");
+                });
+            } else {
+                alert("User not signed in.");
+            }
+        });
+    
+        // Call the function to populate profile data when the page loads
+        window.onload = populateProfileData;
+    </script>
+    
+</body>
+</html>

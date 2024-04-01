@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+    <link rel="stylesheet" type="text/css" href="styles/studentdetails.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="bg-container">
+        <div class="overlay">
+            <div class="content">
+                <img id="crest" src="images/kducrest.png" class="kdu-crest">
+                <div class="grey-side">
+                    <div class="addstudent-form">
+                        <h2><b>Student Details</b></h2>
+                        <form action="#">
+                            <div class="form-group2">
+                                <div class="form-group">
+                                    <input type="text" style="margin-left: 9px; width: 700px;" class="form-control3" id="Reg-No" name="Reg-No" placeholder="Registration Number" oninput="changeTextColor(this)">
+                                    <button type="button" class="btn btn-primary" onclick="searchStudent()">Search</button><br><br>
+                                </div><br>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control1" id="First Name" name="First Name" placeholder="First Name" oninput="changeTextColor(this)"> 
+                                    <input type="text" class="form-control2" id="Last Name" name="Last Name" placeholder="Last Name" oninput="changeTextColor(this)">
+                                </div><br>
+                                
+                                <select class="form-control3" id="Gender" name="Gender" oninput="changeTextColor(this)">
+                                    <option value="" disabled selected>Gender</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                </select><br><br>
+                                <input type="text" class="form-control3" id="Intake-No" name="Intake-No" placeholder="Intake Number" oninput="changeTextColor(this)"><br><br>
+                                <select class="form-control3" id="YearSelect" name="YearSelect" oninput="changeTextColor(this)">
+                                    <option value="" disabled selected>Select Year</option>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                    <!-- Add more options for other years as needed -->
+                                </select><br><br>
+                                <select class="form-control3" id="semester" name="Semester" oninput="changeTextColor(this)">
+                                    <option value="" disabled selected> Select Semester</option>
+                                    <option value="1st Semester">1st Semester</option>
+                                    <option value="2nd Semester">2nd Semester</option>
+                                    <!-- Add more options for other years as needed -->
+                                </select><br><br>
+                                <div class="form-group">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle form-control3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align: left; color: gray; background-color: white; height: 30px; font-size:19px; margin-left: 6px; border-radius: 0; text-align:left;">Update Course List</button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: calc(100% - 10px); background-color: white; " > <!-- Adjust width as needed -->
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="SE3012"> Engineering Foundation for Software-SE3012
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="SE3022"> Software Modeling-SE3022
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="SE3032"> Software Construction Technologies and Tools-SE3032
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="SE3042"> Software Design and Architecture-SE3042
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="CS3202"> UX and UI Engineering-CS3202
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="CS3023"> Advanced Database and Big Data Analytics-CS3023
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="CS3062"> Research Methodology-CS3062
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="CS3052"> Essentials of Computer Law-CS3052
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="CS3072"> Logic Programming-CS3072
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="CS3082"> Mobile Computing-CS3082
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="CS3092">Computer and Network Security-CS3092
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <input type="checkbox" id="CS3042">Image processing and Computer Vision-CS3042
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>          
+                            </div>
+                            <button type="button" id="removeButton" class="btn btn-primary" style="color:white">Remove</button>
+                            <a href="updatepage.html" id="updateButton" class="btn btn-primary" style="color:white">Update</a>
+                        </form>
+                        <!-- right home -->
+                        <a href="dashboard.html" class="home-link">
+                            <span class="home-icon">&#8962;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAdbCc-b4dyiQUeTTYYytB3f5_dXRAEPAs",
+            authDomain: "lms-database-9393b.firebaseapp.com",
+            projectId: "lms-database-9393b",
+            storageBucket: "lms-database-9393b.appspot.com",
+            messagingSenderId: "24843873960",
+            appId: "1:24843873960:web:d27979f5801d5c43939c9d"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(); // Get a Firestore instance
+
+        function changeTextColor(element) {
+            element.style.color = "black";
+        }
+
+        function searchStudent() {
+            const regNo = document.getElementById('Reg-No').value;
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const userUid = user.uid;
+                const studentRef = db.collection("Student").doc(userUid).collection("addstudent").doc(regNo);
+                studentRef.get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            document.getElementById('First Name').value = data.firstName || '';
+                            document.getElementById('Last Name').value = data.lastName || '';
+                            document.getElementById('Gender').value = data.gender || '';
+                            document.getElementById('Intake-No').value = data.intakeNo || '';
+                            document.getElementById('YearSelect').value = data.yearSelect || '';
+                            document.getElementById('semester').value = data.semester || '';
+                            
+                            // Populate course list
+                            const courses = data.courses || [];
+                            const courseCheckboxes = document.querySelectorAll('.dropdown-item input[type="checkbox"]');
+                            courseCheckboxes.forEach((checkbox) => {
+                                checkbox.checked = courses.includes(checkbox.id);
+                            });
+                        } else {
+                            alert("No student found with the provided Registration Number.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.log("Error searching for student:", error);
+                    });
+            } else {
+                alert("User not signed in.");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const removeButton = document.getElementById('removeButton');
+            removeButton.addEventListener('click', confirmRemoveStudent);
+        });
+
+        function confirmRemoveStudent() {
+            const confirmDelete = confirm("Are you sure you want to delete this student?");
+            if (confirmDelete) {
+                removeStudent();
+            } else {
+                // do nothing
+            }
+        }
+
+        function removeStudent() {
+            const regNo = document.getElementById('Reg-No').value;
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const userUid = user.uid;
+                const studentRef = db.collection("Student").doc(userUid).collection("addstudent").doc(regNo);
+
+                // Delete document
+                studentRef.delete()
+                    .then(() => {
+                        console.log("Document successfully deleted!");
+                        alert("Removed successfully!");
+                        // Optionally, display a success message or redirect the user
+                    })
+                    .catch((error) => {
+                        console.error("Error deleting document: ", error);
+                    });
+            } else {
+                alert("User not signed in.");
+            }
+        }
+    </script>
+</body>
+</html>
